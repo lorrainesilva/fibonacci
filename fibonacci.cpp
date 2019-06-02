@@ -1,5 +1,6 @@
 #include <cmath>
 #include <iostream>
+#include <ctime>
 
 long long unsigned int recursive(long long unsigned int n) {
 	if (n == 1 || n == 2)
@@ -11,7 +12,7 @@ long long unsigned int recursive(long long unsigned int n) {
 long long unsigned int iterative(int n) {
 	long long unsigned int fib_n1, fib_n2, fib_n;
 	for (int i = 1; i <= n; i++) {
-		if (i == 1 || n == 2)
+		if (i == 1 || i == 2)
 			fib_n = 1;
 		else
 			fib_n = fib_n1 + fib_n2;
@@ -22,10 +23,10 @@ long long unsigned int iterative(int n) {
 	return fib_n;
 }
 
-long long unsigned int formula(long long unsigned int n) {
-	double gold_number = (1 + sqrt(5)) / 2.0;
+long long unsigned int formula(int n) {
+	long double gold_number = (1 + sqrt(5)) / 2.0;
 
-	return round(pow(gold_number, n) / sqrt(5));
+	return std::round(std::pow(gold_number, n) / sqrt(5));
 }
 
 long long unsigned int matrix(long long unsigned int n) {
@@ -46,7 +47,7 @@ long long unsigned int matrix(long long unsigned int n) {
 	fib[1][0] = 1;
 	fib[1][1] = 0;
 
-	for (int i = 0; i < n; i++) {
+	for (int i = 2; i <= n; i++) {
 		fib_n_p_1 = (fib[0][0] *  mat[0][0]) + (fib[0][1] * mat[1][0]);
 		fib_n_m_1 = (fib[1][0] *  mat[0][1]) + (fib[1][1] * mat[1][1]);
 		fib_n = (fib[0][0] *  mat[0][1]) + (fib[0][1] * mat[1][1]);
@@ -62,29 +63,104 @@ long long unsigned int matrix(long long unsigned int n) {
 }
 
 int main() {
+	clock_t begin, end;
+	long long unsigned int result;
+
 	std::cout << "Formula:" << std::endl;
-	std::cout << formula(5) << std::endl;
-	std::cout << formula(10) << std::endl;
-	std::cout << formula(20) << std::endl;
-	std::cout << formula(40) << std::endl;
-	std::cout << formula(60) << std::endl;
+
+	begin = std::clock();
+	result = formula(5);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+	begin = std::clock();
+	result = formula(10);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+	begin = std::clock();
+	result = formula(20);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+	begin = std::clock();
+	result = formula(40);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+	begin = std::clock();
+	result = formula(60);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
 
 	std::cout << "\nMatriz:" << std::endl;
-	std::cout << matrix(5) << std::endl;
-	std::cout << matrix(10) << std::endl;
-	std::cout << matrix(20) << std::endl;
-	std::cout << matrix(40) << std::endl;
-	std::cout << matrix(60) << std::endl;
+	begin = std::clock();
+	result = matrix(5);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
+	begin = std::clock();
+	result = matrix(10);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
+	begin = std::clock();
+	result = matrix(20);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
+	begin = std::clock();
+	result = matrix(40);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
+	begin = std::clock();
+	result = matrix(60);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
 
 	std::cout << "\nLaco for:" << std::endl;
-	std::cout << iterative(5) << std::endl;
-	std::cout << iterative(10) << std::endl;
-	std::cout << iterative(20) << std::endl;
-	std::cout << iterative(40) << std::endl;
-	std::cout << iterative(60) << std::endl;
+	begin = std::clock();
+	result = iterative(5);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
+	begin = std::clock();
+	result = iterative(10);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
+	begin = std::clock();
+	result = iterative(20);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
+	begin = std::clock();
+	result = iterative(40);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
+	begin = std::clock();
+	result = iterative(60);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
 
 	std::cout << "\nRecursivo:" << std::endl;
-	std::cout << recursive(5) << std::endl;
-	std::cout << recursive(10) << std::endl;
-	std::cout << recursive(20) << std::endl;
+	begin = std::clock();
+	result = recursive(5);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
+	begin = std::clock();
+	result = recursive(10);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
+	begin = std::clock();
+	result = recursive(20);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
+	begin = std::clock();
+	result = recursive(40);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
 }
