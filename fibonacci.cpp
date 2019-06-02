@@ -49,7 +49,7 @@ long long unsigned int matrix(long long unsigned int n) {
 	for (int i = 0; i < n; i++) {
 		fib_n_p_1 = (fib[0][0] *  mat[0][0]) + (fib[0][1] * mat[1][0]);
 		fib_n_m_1 = (fib[1][0] *  mat[0][1]) + (fib[1][1] * mat[1][1]);
-		fib_n_m_1 = (fib[0][0] *  mat[0][1]) + (fib[0][1] * mat[1][1]);
+		fib_n = (fib[0][0] *  mat[0][1]) + (fib[0][1] * mat[1][1]);
 
 		fib[0][0] = fib_n_p_1;
 		fib[0][1] = fib_n;
