@@ -121,20 +121,29 @@ int main() {
 	result = formula(5);
 	end = std::clock() - begin;
 	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
 	begin = std::clock();
 	result = formula(10);
 	end = std::clock() - begin;
 	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
 	begin = std::clock();
 	result = formula(20);
 	end = std::clock() - begin;
 	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
 	begin = std::clock();
 	result = formula(40);
 	end = std::clock() - begin;
 	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
 	begin = std::clock();
 	result = formula(60);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
+	begin = std::clock();
+	result = formula(70);
 	end = std::clock() - begin;
 	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
 
@@ -164,6 +173,11 @@ int main() {
 	end = std::clock() - begin;
 	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
 
+	begin = std::clock();
+	result = matrix(70);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
 
 	std::cout << "\nLaco for:" << std::endl;
 	begin = std::clock();
@@ -188,6 +202,11 @@ int main() {
 
 	begin = std::clock();
 	result = iterative(60);
+	end = std::clock() - begin;
+	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+
+	begin = std::clock();
+	result = iterative(70);
 	end = std::clock() - begin;
 	std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
 
@@ -224,17 +243,27 @@ int main() {
 
   std::cout << n << std::endl;
 
-
-
   std::cout << "\nMatriz vs Strassen" << std::endl;
-  for (int i = 5; i <= 40; i += 5) {
+  for (int i = 5; i <= 80; i += 5) {
     begin = std::clock();
     result = matrix(i);
     end = std::clock() - begin;
-    std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << ", ";
+    std::cout << (float(end))/CLOCKS_PER_SEC << ", ";
     begin = std::clock();
     result = strassen(i);
     end = std::clock() - begin;
-    std::cout << result << " " << (float(end))/CLOCKS_PER_SEC << std::endl;
+    std::cout << (float(end))/CLOCKS_PER_SEC << std::endl;
   }
+
+  std::cout << "\nMaior termo do fibonacci calculavel: ";
+  long long unsigned int termo_anterior = 0;
+  long long unsigned int termo_atual = 0;
+  n = 0;
+  while (termo_atual >= termo_anterior) {
+    termo_anterior = termo_atual;
+    n += 1;
+    termo_atual = iterative(n);
+  }
+
+  std::cout << termo_atual << " " << termo_anterior << " " << n - 1 << std::endl;
 }
